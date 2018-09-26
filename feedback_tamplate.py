@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 
 class Feedback:
 
@@ -44,8 +45,23 @@ class Feedback:
 
 
         #8. Button: submit, clear #14. add grid directly to code since no variable #16. added padding #18. adding sticky
-        ttk.Button(self.frame_content, text = "Submit").grid(row = 4, column = 0, padx = 5, sticky = "e")
-        ttk.Button(self.frame_content, text="Clear").grid(row = 4, column = 1, padx = 5, sticky = "w")
+        ttk.Button(self.frame_content, text = "Submit", command = self.submit).grid(row = 4, column = 0, padx = 5, sticky = "e")
+        ttk.Button(self.frame_content, text="Clear", command = self.clear).grid(row = 4, column = 1, padx = 5, sticky = "w")
+
+    #19. submit action, then connect above with command code
+    def submit(self):
+        print("Name: {}".format(self.entry_name.get()))
+        print("Email: {}".format(self.entry_email.get()))
+        print("Comments: {}".format(self.text_comments.get(1.0, "end")))
+        self.clear()
+        messagebox.showinfo(title = "Explore California Feedback", message = "Comments Submitted")
+
+
+    #20. clear action
+    def clear(self):
+        self.entry_name.delete(0, "end")
+        self.entry_email.delete(0, "end")
+        self.text_comments.delete(1.0, "end")
 
 def main():
 
